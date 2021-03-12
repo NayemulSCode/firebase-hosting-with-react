@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+firebase hosting
+step 1: create firebase project
+step 2: run command in your local project folder
+  $ npm install --save firebase
+step 3: crea file firebase.config.js in src folder
+step 4: copy from project settings and past in firebase.config.js
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+const firebaseConfig = {
+  apiKey: "AIzaSyBihUZHvAap8V_tRn56llpdQktotUmtwi0",
+  authDomain: "ecommerce-app-a4b23.firebaseapp.com",
+  projectId: "ecommerce-app-a4b23",
+  storageBucket: "ecommerce-app-a4b23.appspot.com",
+  messagingSenderId: "855775581148",
+  appId: "1:855775581148:web:6d52fb5fd2c3f46e0af519",
+  measurementId: "G-2Z9R8GHJ6B"
+};
 
-## Available Scripts
+step 5: add line in firebase.config.js - export default firebaseConfig;
 
-In the project directory, you can run:
+step 6: 
+import firebase from "firebase/app";
+import "firebase/analytics";
+import "firebase/auth";
+ in app.js
 
-### `yarn start`
+step 7: // Initialize Firebase
+firebase.initializeApp(firebaseConfig); in app.js
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+step 8: add in app.js function,
+const provider = new firebase.auth.GoogleAuthProvider();
