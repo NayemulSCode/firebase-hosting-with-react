@@ -10,7 +10,7 @@ function App() {
 
   const provider = new firebase.auth.GoogleAuthProvider();
 
-  const haldleSignin = () =>{
+  const handleSignin = () =>{
     firebase.auth().signInWithPopup(provider)
     .then(res => {
       const {displayName, email, phone,photoURL} = res.user;
@@ -28,9 +28,27 @@ function App() {
       console.log(err.message)
     })
   }
+  const handleSignOut =()=>{
+    firebase.auth().signOut()
+    .then(res =>{
+      const signedOutUser = {
+        isSignedIn: false,
+        name: '',
+        email: '',
+        photo: ''
+      }
+      setUser(signedOutUser);
+    })
+    .catch(err =>{
+      console.log(err.message);
+    })
+  }
   return (
     <div className="App">
-      <button onClick={haldleSignin} >Sign in</button>
+      {
+        user.isSignedIn ? <button onClick={handleSignOut}>Sign Out</button> :
+        <button onClick={handleSignin} >Sign in</button>
+      }
       {
         user.isSignedIn && <div>
           <p>Welcome {user.name}</p>
