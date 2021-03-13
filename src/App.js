@@ -6,7 +6,7 @@ import firebaseConfig from './firebase.config';
 import { useState } from 'react';
 firebase.initializeApp(firebaseConfig);
 function App() {
-  const [user, setUser] = useState({isSignedIn:false, name:'',email:'',password:'',photo:''});
+  const [user, setUser] = useState({isSignedIn:false, name:'',email:'',password:'',photo:'',error:''});
 
   const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -35,7 +35,9 @@ function App() {
         isSignedIn: false,
         name: '',
         email: '',
-        photo: ''
+        photo: '',
+        error:'',
+        success: false
       }
       setUser(signedOutUser);
     })
@@ -63,8 +65,25 @@ function App() {
     }
   }
 
-  const handleSubmit = () => {
-
+  const handleSubmit = (e) => {
+    if(user.email && user.password){
+      firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+      .then(res => {
+        const newUserInfo = {...user};
+        newUserInfo.error = '';
+        newUserInfo.success = true;
+        setUser(newUserInfo);
+        console.log(res);
+      })
+      .catch( error =>{
+        const newUserInfo = {...user};
+        newUserInfo.error = error.message;
+        newUserInfo.success = false;
+        setUser(newUserInfo);
+        console.log(error.message);
+      })
+    }
+    e.preventDefault()
   }
   return (
     <div className="App">
@@ -93,6 +112,10 @@ function App() {
         <br/>
        <input type="submit" value="Submit"/>
       </form>
+      <p style={{color: 'red'}}>{user.error}</p>
+      {
+        user.success && <p style={{color: 'green'}}>User created successfully</p>
+      }
     </div>
   );
 }
