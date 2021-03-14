@@ -10,6 +10,7 @@ function App() {
   const [newUser, setNewUser] = useState(false);
   const provider = new firebase.auth.GoogleAuthProvider();
   const fbprovider = new firebase.auth.FacebookAuthProvider();
+  const ghProvider = new firebase.auth.GithubAuthProvider();
 
   const handleSignin = () =>{
     firebase.auth().signInWithPopup(provider)
@@ -144,13 +145,35 @@ function App() {
       // ...
   });
   }
+  const handleGithubUser = () => {
+    firebase
+    .auth()
+    .signInWithPopup(ghProvider)
+    .then((result) => {
+      var credential = result.credential;
+      var token = credential.accessToken;
+      var user = result.user;
+      setUser(user);
+      console.log('gituser',user);
+      
+    }).catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      var email = error.email;
+      var credential = error.credential;
+      console.log(email,errorMessage);
+    });
+  }
   return (
     <div className="App">
       {
         user.isSignedIn ? <button onClick={handleSignOut}>Sign Out</button> :
-        <button onClick={handleSignin} >Sign in</button>
+        <button onClick={handleSignin} >Sign in with Google</button>
       }
-      <button onClick={handleFacebookUser}>logging with facebook</button>
+      <br/>
+      <button onClick={handleFacebookUser}>Sign in with Facebook</button>
+      <br/>
+      <button onClick={handleGithubUser}>Sign in with Github</button>
       {
         user.isSignedIn && <div>
           <p>Welcome {user.name}</p>
