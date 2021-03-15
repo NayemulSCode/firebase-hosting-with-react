@@ -1,41 +1,36 @@
 .App {
-  text-align: center;
+  background: url('./images/download.jpg') no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 165vh;
 }
-.App img{
-  width: 10%;
-  border-radius: 50%;
+.icon {
+  margin: 0rem .5rem;
+  font-size: 2rem;
+  transition: all .5s;
+  cursor: pointer;
 }
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.fb-icon{
+  color: #4267B2;
+}
+.google-icon{
+  color: #4285F4;
+}
+.github-icon{
+  color: #211F1F;
+}
+.icon:hover{
+  transform: scale(1.1);
+}
+form .form-btn, div .form-btn{
+  border: none;
+  border-radius: 2rem;
+  background: linear-gradient(to right,#0ECFE0, #6683EB, #E714FD);
+}
+form .form-btn:hover{
+  background: linear-gradient(to left,#0ECFE0, #6683EB, #E714FD);
+}
+.toggle-signUp-logIn{
+  cursor: pointer;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
